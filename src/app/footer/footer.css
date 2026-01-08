@@ -1,0 +1,15 @@
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-link {
+  color: #adb5bd;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: orange;
+  text-decoration: underline;
+}
