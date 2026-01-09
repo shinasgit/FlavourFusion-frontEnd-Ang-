@@ -2,12 +2,14 @@
   <div class="card shadow-lg p-4 login-card bg-warning-subtle">
     <h3 class="text-center mb-4">Login</h3>
 
-    <form>
+    <!-- control define -->
+    <form [formGroup]="registerForm" >
       <!-- Email -->
 
       <div class="mb-3">
+        <!-- formControlname define -->
         <label class="form-label">Username</label>
-        <input
+        <input formControlName="username"
           type=""
           class="form-control"
           placeholder="Enter your email"
@@ -17,7 +19,7 @@
 
       <div class="mb-3">
         <label class="form-label">Email address</label>
-        <input
+        <input formControlName="email"
           type="email"
           class="form-control"
           placeholder="Enter your email"
@@ -28,7 +30,7 @@
       <!-- Password -->
       <div class="mb-3">
         <label class="form-label">Password</label>
-        <input
+        <input formControlName="password"
           type="password"
           class="form-control"
           placeholder="Enter your password"

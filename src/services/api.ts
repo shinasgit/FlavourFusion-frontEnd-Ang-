@@ -1,6 +1,10 @@
-1.ng g s services/api
-2. then api.confug.ts - providerHttpClient()
-3. api.ts - dependacy injection - export class Api {
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class Api {
   
   serverUrl:string="http://localhost:3000"
 
@@ -15,5 +19,4 @@
   }
 
 }
-4. regsiter.ts
-  reactive froms 
+

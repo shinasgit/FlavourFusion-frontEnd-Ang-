@@ -1,0 +1,10 @@
+.contact{
+    margin-left: 120px;
+    margin-right: 120px;
+    margin-top: 50px;
+}
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
