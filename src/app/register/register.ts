@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Api } from '../../services/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,18 +14,40 @@ export class Register {
   registerForm:FormGroup;
 
   //2nd step DI:formBuilder
-  constructor(private serviceApi:Api,private fb:FormBuilder){
+  constructor(private serviceApi:Api,private fb:FormBuilder,private route:Router){
     //4th step : form array creation
     this.registerForm=this.fb.group({
-      username:["Shinas"],
-      email:["shinas@gmail.com"],
-      password:["123"]
+      username:['',[Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+      email:['',[Validators.required,Validators.email]],
+      password:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*')]]
     })
   }
   //5 control passes throuh HTML page
 
-  regsiter(){
-    // this.serviceApi.registerAPI()
-  }
+  register(){
+    const username = this.registerForm.value.username
+    const email = this.registerForm.value.email
+    const password = this.registerForm.value.password
+    console.log(username,email,password);
+    if(this.registerForm.valid){
+      this.serviceApi.registerAPI({username,email,password}).subscribe(
+        {
+          next:(res:any)=>{
+            console.log(res);
+            alert(res.message)
+            this.route.navigateByUrl('/login')
+          },
+          error:err=>{
+            console.log("Register error",err);
+            alert(err.error)
+          }
+        }
+      )
+      alert("Success")
+    }else{
+      alert("Validation Error")
+    }
+    
+    }
 
 }

@@ -18,5 +18,13 @@ export class Api {
     return this.http.post(`${this.serverUrl}/api/login`,reqBody)
   }
 
+  GetRecipeAPI(){
+    return this.http.get(`${this.serverUrl}/api/allRecipes`)
+  }
+
+  ViewARecipeAPI(id:any){
+    return this.http.get(`${this.serverUrl}/api/view-Recipe/${id}`)
+  }
+
 }
 
