@@ -2,6 +2,10 @@
   <div class="row">
     <div class="col">
       <img src="https://freepngimg.com/thumb/food/4-2-food-png.png" alt="" width="500px">
+      <div class="d-flex justify-content-around">
+        <button class="btn btn-primary">Download Recipe</button>
+      <button class="btn btn-success">Save Recipe</button>
+      </div>
     </div>
     <div class="col">
       <h4>Title</h4>
@@ -41,4 +45,20 @@
     </div>
     
   </div>
+  <h4 class="text-start ml-4">Related Recipe</h4>
+  @for (item of relatedRecipe; track $index) {
+    <div class="container">
+      <div class="row">
+        <div class="col m-4">
+          <div class="card" style="width: 18rem;">
+  <img [src]="item.image" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{item.name}}</h5>
+  </div>
+</div>
+        </div>
+      </div>
+    </div>
+    
+  }
 </div>

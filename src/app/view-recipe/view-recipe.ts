@@ -12,7 +12,11 @@ import { Api } from '../../services/api';
 export class ViewRecipe implements OnInit {
 
   recipeId:any=""
-recipes:any={}
+  recipes:any={}
+
+  //to hold related recipe
+  relatedRecipe:any[] | undefined
+
   constructor(private serviceAPI:Api,private ar:ActivatedRoute){}
 
   ngOnInit(): void {
@@ -33,12 +37,30 @@ recipes:any={}
       next:(res:any)=>{
         console.log(res);
         this.recipes=res
+        console.log(res.cuisine);
         
+        this.getRelatedRecipe(res.cuisine)
       },
       error:(err)=>{
         console.log(err);
         
       }
     })
+  
   }
+
+  getRelatedRecipe(cuisine:any){
+    this.serviceAPI.RetatedRecipeAPI(cuisine).subscribe({
+      next:(res:any)=>{
+        console.log(res); 
+        this.recipes=res
+        this.relatedRecipe=res
+      },
+      error:(err)=>{
+        console.log("Error",err);
+        
+      }
+    })
+  }
+
 }
