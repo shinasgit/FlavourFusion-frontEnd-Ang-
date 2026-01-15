@@ -6,9 +6,9 @@
     <div class="R1">
         <div class="Filter">
             <h5>Filter</h5>
-            <p>All</p>
+            <p  >All</p>
             <select name="cuisine-type" id="">
-                <option value="" hidden>Cuisine Type</option>
+                <option  value="" hidden>Cuisine Type</option>
                 <option value="Korean">Korean</option>
                 <option value="Indian">Indian</option>
                 <option value="chines">chines</option>
@@ -30,7 +30,7 @@
         <div class="section2">
             <h1>All Recipes</h1>
 
-            @for (item of recipes; track $index) {
+            @for (item of recipes | paginate: { itemsPerPage: 4, currentPage: p } ; track $index ) {
                 <div  class="c2">
                 <div (click)="viewARecipe(item._id)" class="card" style="width: 18rem;">
                     <img [src]=item.image
@@ -44,4 +44,5 @@
             }
         </div>
     </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </section>
