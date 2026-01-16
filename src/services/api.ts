@@ -39,5 +39,17 @@ export class Api {
   RetatedRecipeAPI(cuisine:any){
     return this.http.get(`${this.serverUrl}/api/relatedrecipe?cuisine=${cuisine}`)
   }
+
+  AddtoSavedRecipeAPI(recipeId:any,reqBody:any){
+    return this.http.post(`${this.serverUrl}/api/savedrecipe/${recipeId}`,reqBody,this.appendToken())
+  }
+
+  getSavedRecipeAPI(){
+    return this.http.get(`${this.serverUrl}/api/getsavedrecipe/`,this.appendToken())
+  }
+
+  deleteSavedRecipe(id:any){
+    return this.http.delete(`${this.serverUrl}/deletesavedrecipe/${id}`,this.appendToken())
+  }
 }
 

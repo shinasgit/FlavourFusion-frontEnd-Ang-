@@ -1,48 +1,68 @@
-
-
 <section>
-    <p>Jan 5, 2026, 9:55:58 AM</p>
-    <input type="text" placeholder="Search Recipes" name="" id="">
-    <div class="R1">
-        <div class="Filter">
-            <h5>Filter</h5>
-            <p  >All</p>
-            <select name="cuisine-type" id="">
-                <option  value="" hidden>Cuisine Type</option>
-                <option value="Korean">Korean</option>
-                <option value="Indian">Indian</option>
-                <option value="chines">chines</option>
-                <option value="Italian">Italian</option>
-                <option value="Japanese">Japanese</option>
-            </select>
-            <select name="cuisine-type" id="">
-                <option value="" hidden>Meal Type</option>
-                <option value="Breakfast">Breakfast</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Dinner">Dinner</option>
-                <option value="Snacks">Snacks</option>
-                <option value="Tea">Tea</option>
-                <option value="Juice">Juice</option>
-                <option value="Shake">Shake</option>
-            </select>
-        </div>
+  <p>Jan 5, 2026, 9:55:58 AM</p>
 
-        <div class="section2">
-            <h1>All Recipes</h1>
+  <input type="text" placeholder="Search Recipes" />
 
-            @for (item of recipes | paginate: { itemsPerPage: 4, currentPage: p } ; track $index ) {
-                <div  class="c2">
-                <div (click)="viewARecipe(item._id)" class="card" style="width: 18rem;">
-                    <img [src]=item.image
-                        class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h6 class="card-text">{{item.name}}</h6>
-                    </div>
-                </div>
-                
-            </div>
-            }
-        </div>
+  <div class="R1">
+
+    <!-- FILTER SECTION -->
+    <div class="Filter">
+      <h5>Filter</h5>
+
+      <!-- All -->
+      <button class="btn btn-dark w-100 mb-2">
+        All
+      </button>
+      
+      <!-- Cuisine Type -->
+      <button
+        class="btn btn-outline-primary dropdown-toggle w-100 mb-2"
+        data-bs-toggle="collapse"
+        data-bs-target="#cuisineCollapse">
+        Cuisine Type
+      </button>
+      <div class="collapse" id="cuisineCollapse">
+        @for(item of cuisineType;track $index){
+        <button (click)="filterRecipe('cuisine',item)" class="btn btn-light border w-100 mb-2">{{item}}</button>}
+        <!-- <button class="btn btn-light border w-100 mb-2">Indian</button>
+        <button class="btn btn-light border w-100 mb-2">Chinese</button>
+        <button class="btn btn-light border w-100 mb-2">Italian</button>
+        <button class="btn btn-light border w-100 mb-2">Japanese</button> -->
+      </div>
+    
+      
+
+      <!-- Meal Type -->
+      <button
+        class="btn btn-outline-success dropdown-toggle w-100 mb-2"
+        data-bs-toggle="collapse"
+        data-bs-target="#mealCollapse">
+        Meal Type
+      </button>
+
+      <div class="collapse" id="mealCollapse">
+        @for(item of mealTypeArray;track $index){
+        <button  (click)="filterRecipe('mealType',item)" class="btn btn-light border w-100 mb-2">{{item}}</button>}
+      </div>
     </div>
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+    <!-- RECIPE SECTION -->
+    <div class="section2">
+      <h1>All Recipes</h1>
+
+      @for (item of recipes | paginate: { itemsPerPage: 4, currentPage: p }; track $index) {
+        <div (click)="viewARecipe(item._id)"  class="c2">
+          <div class="card" style="width: 18rem;">
+            <img [src]="item.image" class="card-img-top" alt="">
+            <div class="card-body">
+              <h6 class="card-text">{{ item.name }}</h6>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+  </div>
+
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </section>

@@ -1,64 +1,106 @@
-<div class="container-fluid text-center bg-warning-subtle">
-  <div class="row">
-    <div class="col">
-      <img src="https://freepngimg.com/thumb/food/4-2-food-png.png" alt="" width="500px">
-      <div class="d-flex justify-content-around">
-        <button class="btn btn-primary">Download Recipe</button>
-      <button class="btn btn-success">Save Recipe</button>
+<div class="container my-4">
+
+
+  <a routerLink="/all-recipes" class="text-decoration-none small">
+    ← Back To Recipe List
+  </a>
+
+  <div class="row mt-3">
+
+
+    <div class="col-md-6">
+      <img
+        [src]=recipes.image
+        class="img-fluid rounded"
+        alt="Recipe"
+      />
+
+    
+      <div class="d-flex justify-content-between mt-3">
+        <button class="btn btn-success btn-sm">
+          Download Recipe
+        </button>
+        <button (click)="addToSavedRecipe()" class="btn btn-primary btn-sm">
+          Save Recipe
+        </button>
       </div>
     </div>
-    <div class="col">
-      <h4>Title</h4>
-     <div class="row row-cols-3 py-5">
-    <div class="col p-2">Cuisine:Mexican</div>
-    <div class="col p-2">Servings:3</div>
-    <div class="col p-2">Mode of Cooking:Easy</div>
-    <div class="col p-2">Preparation Time:15</div>
-    <div class="col p-2">Cooking Time:25</div>
-    <div class="col p-2">Calorie Per Servings:380</div>
-  </div>
-  <div>
-    <h6 class="text-start fw-bold">Ingredients Needed</h6>
-    <ol class="text-start">
-      <li>Chicken Thighs</li>
-      <li>Mango,diced</li>
-      <li>Red onion,finely chopped</li>
-      <li>sdc</li>
-      <li>sdc</li>
-      <li>sdf</li>
-      <li>sdf</li>
-      <li>asd</li>
-      <li>adf</li>
-    </ol>
-  </div>
-  <div>
-    <h6 class="text-start fw-bold">Cooking Instruction</h6>
-    <ol class="text-start">
-      <li>Chicken Thighs</li>
-      <li>Mango,diced</li>
-      <li>Red onion,finely chopped</li>
-      <li>sdc</li>
-      <li>sdc</li>
-      
-    </ol>
-  </div>
-    </div>
-    
-  </div>
-  <h4 class="text-start ml-4">Related Recipe</h4>
-  @for (item of relatedRecipe; track $index) {
-    <div class="container">
-      <div class="row">
-        <div class="col m-4">
-          <div class="card" style="width: 18rem;">
-  <img [src]="item.image" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{item.name}}</h5>
-  </div>
-</div>
+
+   
+    <div class="col-md-6">
+
+      <h3 class="fw-bold">{{recipes.name}}</h3>
+
+     
+      <div class="row text-center my-3 small">
+        <div class="col">
+          <strong>Cuisine</strong><br>{{recipes.cuisine}}
+        </div>
+        <div class="col">
+          <strong>Servings</strong><br>{{recipes.servings}}
+        </div>
+        <div class="col">
+          <strong>Mode</strong><br>Easy
+        </div>
+        <div class="col">
+          <strong>Prep</strong><br>{{recipes.prepTimeMinutes
+}} min
+        </div>
+        <div class="col">
+          <strong>Cook</strong><br>{{recipes.cookTimeMinutes}} min
+        </div>
+        <div class="col">
+          <strong>Calories</strong><br>380
         </div>
       </div>
+
+     
+      <h6 class="fw-bold mt-4">Ingredients Needed</h6>
+      <ol class="small">
+        <li>Chicken thighs</li>
+        <li>Mango, diced</li>
+        <li>Red onion, finely chopped</li>
+        <li>Cilantro, chopped</li>
+        <li>Lime juice</li>
+        <li>Jalapeño, minced</li>
+        <li>Salt and pepper to taste</li>
+        <li>Cooked rice for serving</li>
+      </ol>
+
+      <h6 class="fw-bold mt-3">Cooking Instruction</h6>
+      <ol class="small">
+        <li>Season chicken with salt and pepper.</li>
+        <li>Grill or bake chicken until fully cooked.</li>
+        <li>Mix mango, onion, cilantro, jalapeño, and lime juice.</li>
+        <li>Dice chicken and combine with mango salsa.</li>
+        <li>Serve over cooked rice.</li>
+      </ol>
+
     </div>
+  </div>
+
+
+  <div class="mt-5">
+    <h5 class="fw-bold mb-3">Related Recipes</h5>
+
+    <div class="row g-3">
+     @for (item of relatedRecipe; track $index) {
+       <div class="col-md-3">
+        <div class="card h-100 shadow-sm">
+          <img
+            [src]=item.image
+            class="card-img-top"
+            alt="related"
+          />
+          <div class="card-body text-center">
+            <small>{{item.name}}</small>
+          </div>
+        </div>
+      </div>
+     }
+
     
-  }
+    </div>
+  </div>
+
 </div>

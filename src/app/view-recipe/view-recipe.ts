@@ -63,4 +63,16 @@ export class ViewRecipe implements OnInit {
     })
   }
 
+  addToSavedRecipe(){
+    this.serviceAPI.AddtoSavedRecipeAPI(this.recipeId,this.recipes).subscribe({
+      next:(res:any)=>{
+        console.log(res);
+      },
+      error:(err:any)=>{
+        console.log("Error: "+err);
+        
+      }
+    })
+  }
+
 }
